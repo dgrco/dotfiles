@@ -1,0 +1,27 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": ["hyprland/workspaces"],
+  "modules-right": ["tray", "clock"],
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "persistent-workspaces": {
+      "workspaces": [1, 2, 3, 4, 5]
+    }
+  },
+
+  "tray": {
+      "icon-size": 16,
+      "spacing": 8,
+      "tooltip": true,
+      "on-update": "echo tray updated"
+  },
+
+  "clock": {
+    "format": "{:%Y-%m-%d %I:%M %p}",
+    "tooltip-format": "{:%A, %B %d, %Y}"
+  }
+}
+

@@ -1,0 +1,42 @@
+[font]
+normal = {family="Iosevka"}
+size = 14
+
+[window]
+padding = {x=5, y=0}
+
+[colors]
+
+  # Default colors
+  [colors.primary]
+    background = "0x141415"
+    foreground = "0xcdcdcd"
+
+  # Cursor colors
+  #
+  # These will only be used when the `custom_cursor_colors` field is set to `true`.
+  [colors.cursor]
+    text   = "0x141415"
+    cursor = "0x8cb66d"
+
+  # Normal colors
+  [colors.normal]
+    black   = "0x141415"
+    red     = "0xdf6882"
+    green   = "0x8cb66d"
+    yellow  = "0xf3be7c"
+    blue    = "0x6e94b2"
+    magenta = "0xbb9dbd"
+    cyan    = "0xb4d4cf"
+    white   = "0xcdcdcd"
+
+  # Bright colors
+  [colors.bright]
+    black   = "0x606079"
+    red     = "0xdf6882"
+    green   = "0x8cb66d"
+    yellow  = "0xf3be7c"
+    blue    = "0x9bb4bc"
+    magenta = "0xbb9dbd"
+    cyan    = "0xb4d4cf"
+    white   = "0xcdcdcd"
