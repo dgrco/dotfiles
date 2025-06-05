@@ -2,41 +2,56 @@
 normal = {family="Iosevka"}
 size = 14
 
+[cursor]
+style = { blinking = "Always" }
+blink_interval = 500
+blink_timeout = 0
+
 [window]
 padding = {x=5, y=0}
 
-[colors]
+# -----------------------------------------------------------------------------
+# TokyoNight Alacritty Colors
+# Theme: Tokyo Night
+# Upstream: https://github.com/folke/tokyonight.nvim/raw/main/extras/alacritty/tokyonight_night.toml
+# -----------------------------------------------------------------------------
 
-  # Default colors
-  [colors.primary]
-    background = "0x141415"
-    foreground = "0xcdcdcd"
+# Default colors
+[colors.primary]
+background = '#1a1b26'
+foreground = '#c0caf5'
 
-  # Cursor colors
-  #
-  # These will only be used when the `custom_cursor_colors` field is set to `true`.
-  [colors.cursor]
-    text   = "0x141415"
-    cursor = "0x8cb66d"
+[colors.cursor]
+cursor = '#c0caf5'
+text = '#1a1b26'
 
-  # Normal colors
-  [colors.normal]
-    black   = "0x141415"
-    red     = "0xdf6882"
-    green   = "0x8cb66d"
-    yellow  = "0xf3be7c"
-    blue    = "0x6e94b2"
-    magenta = "0xbb9dbd"
-    cyan    = "0xb4d4cf"
-    white   = "0xcdcdcd"
+# Normal colors
+[colors.normal]
+black = '#15161e'
+red = '#f7768e'
+green = '#9ece6a'
+yellow = '#e0af68'
+blue = '#7aa2f7'
+magenta = '#bb9af7'
+cyan = '#7dcfff'
+white = '#a9b1d6'
 
-  # Bright colors
-  [colors.bright]
-    black   = "0x606079"
-    red     = "0xdf6882"
-    green   = "0x8cb66d"
-    yellow  = "0xf3be7c"
-    blue    = "0x9bb4bc"
-    magenta = "0xbb9dbd"
-    cyan    = "0xb4d4cf"
-    white   = "0xcdcdcd"
+# Bright colors
+[colors.bright]
+black = '#414868'
+red = '#ff899d'
+green = '#9fe044'
+yellow = '#faba4a'
+blue = '#8db0ff'
+magenta = '#c7a9ff'
+cyan = '#a4daff'
+white = '#c0caf5'
+
+# Indexed Colors
+[[colors.indexed_colors]]
+index = 16
+color = '#ff9e64'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#db4b4b'
