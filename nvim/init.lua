@@ -4,6 +4,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.o.termguicolors = true
+
 -- Make the cursor block style for every mode
 -- vim.opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr-o:block"
 
@@ -224,7 +226,7 @@ require('lazy').setup({
     opts = {
       -- delay between pressing a key and opening which-key (milliseconds)
       -- this setting is independent of vim.o.timeoutlen
-      delay = 0,
+      delay = 500,
       icons = {
         -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
@@ -823,10 +825,32 @@ require('lazy').setup({
     name = 'catppuccin',
     priority = 1000,
     config = function()
-      require('catppuccin').setup({
+      require('catppuccin').setup {
         no_italic = true,
-      })
-      vim.cmd.colorscheme 'catppuccin-frappe'
+      }
+      -- vim.cmd.colorscheme 'catppuccin-frappe'
+    end,
+  },
+
+  {
+    'everviolet/nvim',
+    priority = 1000,
+    name = 'evergarden',
+    config = function()
+      require('evergarden').setup {
+        theme = {
+          variant = 'winter',
+        },
+        style = {
+          tabline = { 'reverse' },
+          search = { 'reverse' },
+          incsearch = { 'reverse' },
+          types = { },
+          keyword = { },
+          comment = { },
+        },
+      }
+      vim.cmd.colorscheme 'evergarden'
     end,
   },
 
