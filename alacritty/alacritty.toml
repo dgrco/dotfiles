@@ -2,19 +2,19 @@
 size = 12.0 # Adjust this to your preferred font size
 
 [font.normal]
-family = "JetBrains Mono" # Or "JetBrainsMono Nerd Font" if you installed the Nerd Font version
+family = "SauceCodePro NFM"
 style = "Regular"
 
 [font.bold]
-family = "JetBrains Mono" # Or "JetBrainsMono Nerd Font"
+family = "SauceCodePro NFM"
 style = "Bold"
 
 [font.italic]
-family = "JetBrains Mono" # Or "JetBrainsMono Nerd Font"
+family = "SauceCodePro NFM"
 style = "Italic"
 
 [font.bold_italic]
-family = "JetBrains Mono" # Or "JetBrainsMono Nerd Font"
+family = "SauceCodePro NFM"
 style = "Bold Italic"
 
 [colors.primary]

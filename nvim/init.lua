@@ -833,26 +833,40 @@ require('lazy').setup({
   },
 
   {
-    'everviolet/nvim',
-    priority = 1000,
-    name = 'evergarden',
+    'rose-pine/neovim',
+    name = 'rose-pine',
     config = function()
-      require('evergarden').setup {
-        theme = {
-          variant = 'winter',
-        },
-        style = {
-          tabline = { 'reverse' },
-          search = { 'reverse' },
-          incsearch = { 'reverse' },
-          types = { },
-          keyword = { },
-          comment = { },
-        },
-      }
-      vim.cmd.colorscheme 'evergarden'
+      require("rose-pine").setup({
+        variant = "moon", -- auto, main, moon, or dawn
+        styles = {
+          italic = false,
+        }
+      })
+      vim.cmd 'colorscheme rose-pine'
     end,
   },
+
+  -- {
+  --   'everviolet/nvim',
+  --   priority = 1000,
+  --   name = 'evergarden',
+  --   config = function()
+  --     require('evergarden').setup {
+  --       theme = {
+  --         variant = 'winter',
+  --       },
+  --       style = {
+  --         tabline = { 'reverse' },
+  --         search = { 'reverse' },
+  --         incsearch = { 'reverse' },
+  --         types = { },
+  --         keyword = { },
+  --         comment = { },
+  --       },
+  --     }
+  --     vim.cmd.colorscheme 'evergarden'
+  --   end,
+  -- },
 
   -- ============= END OF THEMES =============
 
