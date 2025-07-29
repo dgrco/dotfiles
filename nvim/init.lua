@@ -10,7 +10,7 @@ vim.o.termguicolors = true
 -- vim.o.guicursor = 'n-v-c:block-Cursor'
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
+vim.g.have_nerd_font = false
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -91,6 +91,9 @@ local opts = { noremap = true, silent = true }
 
 -- Netrw bind
 vim.keymap.set('n', '<leader>\\', '<cmd>Ex<CR>')
+
+-- Bind for Neogen
+vim.api.nvim_set_keymap("n", "<leader>nf", ":lua require('neogen').generate()<CR>", opts)
 
 -- greatest remap ever (from theprimeagen)
 vim.keymap.set('x', '<leader>p', [["_dP]])
@@ -345,11 +348,14 @@ require('lazy').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          file_ignore_patterns = {
+            "node_modules", "build", "target"
+          },
+          -- mappings = {
+          --   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+          -- },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -851,49 +857,37 @@ require('lazy').setup({
   --   end,
   -- },
 
-  -- {
-  --   'dgrco/nord.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     vim.g.nord_bold = false
-  --     vim.g.nord_italic = false
-  --     require('nord').set()
-  --     vim.cmd.colorscheme 'nord'
-  --   end,
-  -- },
-
-  -- {
-  --   'everviolet/nvim',
-  --   priority = 1000,
-  --   name = 'evergarden',
-  --   config = function()
-  --     require('evergarden').setup {
-  --       theme = {
-  --         variant = 'winter',
-  --       },
-  --       style = {
-  --         tabline = { 'reverse' },
-  --         search = { 'reverse' },
-  --         incsearch = { 'reverse' },
-  --         types = {},
-  --         keyword = {},
-  --         comment = {},
-  --       },
-  --     }
-  --     vim.cmd.colorscheme 'evergarden'
-  --   end,
-  -- },
-
   {
-    'sainnhe/gruvbox-material',
+    'everviolet/nvim',
     priority = 1000,
+    name = 'evergarden',
     config = function()
-      vim.g.gruvbox_material_foreground = 'mix'
-      vim.g.gruvbox_material_enable_italic = false
-      vim.cmd 'colorscheme gruvbox-material'
+      require('evergarden').setup {
+        theme = {
+          variant = 'fall',
+        },
+        style = {
+          tabline = { 'reverse' },
+          search = { 'reverse' },
+          incsearch = { 'reverse' },
+          types = {},
+          keyword = {},
+          comment = {},
+        },
+      }
+      vim.cmd.colorscheme 'evergarden'
     end,
   },
+
+  -- {
+  --   'sainnhe/gruvbox-material',
+  --   priority = 1000,
+  --   config = function()
+  --     vim.g.gruvbox_material_foreground = 'mix'
+  --     vim.g.gruvbox_material_enable_italic = false
+  --     vim.cmd 'colorscheme gruvbox-material'
+  --   end,
+  -- },
 
   -- ============= END OF THEMES =============
 
@@ -914,9 +908,15 @@ require('lazy').setup({
       end)
     end,
   },
-
+ 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+
+  -- Better annotations
+  { 
+      "danymat/neogen", 
+      config = true,
+  },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',

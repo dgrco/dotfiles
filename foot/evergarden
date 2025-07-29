@@ -1,41 +1,24 @@
-# Evergarden theme
-[cursor]
-color=191E21 e0def4 
-
 [colors]
-# Core
-background=1E2528
-foreground=F8F9E8
+background=232a2e
+foreground=f8f9e8
 
-# Regular colors (0-7)
-regular0=262F33   # surface0
-regular1=F57F82   # red
-regular2=CBE3B3   # green
-regular3=F5D098   # yellow
-regular4=B2CAED   # blue
-regular5=D2BDF3   # purple
-regular6=B3E3CA   # aqua
-regular7=F8F9E8   # snow-ish
+# Regular colors
+regular0=232a2e  # black
+regular1=f57f82  # red
+regular2=cbe3b3  # green
+regular3=f5d098  # yellow
+regular4=b2caed  # blue
+regular5=f3c0e5  # magenta
+regular6=b3e3ca  # cyan
+regular7=f8f9e8  # white
 
-# Bright colors (8-15)
-bright0=58686D    # bright-black
-bright1=F7A182    # orange
-bright2=DBE6AF    # lime
-bright3=F5D098    # yellow
-bright4=AFD9E6    # snow
-bright5=F3C0E5    # pink
-bright6=B3E6DB    # skye
-bright7=F8F9E8    # bright-white
-
-# Flash color
-# dim0=#58686D      # commented example for dimmed (optional)
-# dim1=F57F82
-# dim2=DBE6AF
-# dim3=F5D098
-# dim4=AFD9E6
-# dim5=F3C0E5
-# dim6=B3E6DB
-# dim7=F8F9E8
-
-flash=F6CEE5   # cherry
+# Bright colors
+bright0=2b3337  # black
+bright1=f57f82  # red
+bright2=cbe3b3  # green
+bright3=f5d098  # yellow
+bright4=b2caed  # blue
+bright5=f3c0e5  # magenta
+bright6=b3e3ca  # cyan
+bright7=96b4aa  # white
 
