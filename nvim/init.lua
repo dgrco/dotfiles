@@ -12,6 +12,10 @@ vim.o.termguicolors = true
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
+-- Word wrap
+vim.o.wrap = true
+vim.o.linebreak = true
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -39,6 +43,19 @@ end)
 
 -- Enable break indent
 vim.o.breakindent = true
+
+vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.shiftwidth = 4 -- Size of an indent
+vim.opt.tabstop = 4 -- Number of spaces that a <Tab> in the file counts for
+
+-- JavaScript/TypeScript = 2 spaces
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'javascript', 'typescript', 'typescriptreact' },
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+  end,
+})
 
 -- Save undo history
 vim.o.undofile = true
@@ -75,7 +92,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.o.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.o.cursorline = true
+vim.o.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
@@ -89,11 +106,12 @@ vim.o.confirm = true
 --  See `:help vim.keymap.set()`
 local opts = { noremap = true, silent = true }
 
--- Netrw bind
-vim.keymap.set('n', '<leader>\\', '<cmd>Ex<CR>')
+-- Go down/up by display lines (not actual lines), so word wrap navigation isn't annoying
+vim.api.nvim_set_keymap('n', 'j', 'gj', opts)
+vim.api.nvim_set_keymap('n', 'k', 'gk', opts)
 
 -- Bind for Neogen
-vim.api.nvim_set_keymap("n", "<leader>nf", ":lua require('neogen').generate()<CR>", opts)
+vim.api.nvim_set_keymap('n', '<leader>nf', ":lua require('neogen').generate()<CR>", opts)
 
 -- greatest remap ever (from theprimeagen)
 vim.keymap.set('x', '<leader>p', [["_dP]])
@@ -120,7 +138,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -224,6 +242,16 @@ require('lazy').setup({
       },
     },
   },
+  {
+    'itchyny/lightline.vim',
+    config = function ()
+      vim.g.lightline = {
+        colorscheme = "aquarium"
+      }
+
+      vim.cmd("highlight MatchParen guibg=#3B3B3B ctermbg=237 guifg=#DCDCDC ctermfg=254")
+    end
+  },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -238,6 +266,22 @@ require('lazy').setup({
   --
   -- Then, because we use the `opts` key (recommended), the configuration runs
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
+
+  {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    lazy = false,
+    config = function()
+      require('oil').setup()
+      vim.keymap.set('n', '<leader>\\', '<cmd>Oil<CR>')
+    end,
+  },
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
@@ -350,7 +394,9 @@ require('lazy').setup({
         --
         defaults = {
           file_ignore_patterns = {
-            "node_modules", "build", "target"
+            'node_modules/',
+            'build/',
+            'target/',
           },
           -- mappings = {
           --   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
@@ -373,6 +419,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Search [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -686,12 +733,12 @@ require('lazy').setup({
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>f',
+        '<leader>lf',
         function()
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
         mode = '',
-        desc = '[F]ormat buffer',
+        desc = '[L]SP [Format] Buffer',
       },
     },
     opts = {
@@ -825,57 +872,36 @@ require('lazy').setup({
 
   -- ============= START OF THEMES =============
 
-  -- { -- You can easily change to a different colorscheme.
-  --   -- Change the name of the colorscheme plugin below, and then
-  --   -- change the command in the config to whatever the name of that colorscheme is.
-  --   --
-  --   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  --   'folke/tokyonight.nvim',
-  --   priority = 1000, -- Make sure to load this before all the other start plugins.
+  -- {
+  --   'everviolet/nvim',
+  --   priority = 1000,
+  --   name = 'evergarden',
   --   config = function()
-  --     ---@diagnostic disable-next-line: missing-fields
-  --     require('tokyonight').setup {
-  --       styles = {
-  --         comments = { italic = false }, -- Disable italics in comments
-  --         keywords = { italic = false },
+  --     require('evergarden').setup {
+  --       theme = {
+  --         variant = 'fall',
+  --       },
+  --       style = {
+  --         tabline = { 'reverse' },
+  --         search = { 'reverse' },
+  --         incsearch = { 'reverse' },
+  --         types = {},
+  --         keyword = {},
+  --         comment = {},
   --       },
   --     }
-  --
-  --     -- vim.cmd.colorscheme 'tokyonight'
-  --   end,
-  -- },
-
-  -- {
-  --   'catppuccin/nvim',
-  --   name = 'catppuccin',
-  --   priority = 1000,
-  --   config = function()
-  --     require('catppuccin').setup {
-  --       no_italic = true,
-  --     }
-  --     -- vim.cmd.colorscheme 'catppuccin-frappe'
+  --     vim.cmd.colorscheme 'evergarden'
   --   end,
   -- },
 
   {
-    'everviolet/nvim',
+    'FrenzyExists/aquarium-vim',
+    lazy = false,
+    name = 'aquarium',
     priority = 1000,
-    name = 'evergarden',
     config = function()
-      require('evergarden').setup {
-        theme = {
-          variant = 'fall',
-        },
-        style = {
-          tabline = { 'reverse' },
-          search = { 'reverse' },
-          incsearch = { 'reverse' },
-          types = {},
-          keyword = {},
-          comment = {},
-        },
-      }
-      vim.cmd.colorscheme 'evergarden'
+      vim.g.aqua_bold = 1
+      vim.cmd.colorscheme 'aquarium'
     end,
   },
 
@@ -891,31 +917,13 @@ require('lazy').setup({
 
   -- ============= END OF THEMES =============
 
-  -- Harpoon
-  {
-    'ThePrimeagen/harpoon',
-    branch = 'harpoon2',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      local harpoon = require 'harpoon'
-      harpoon:setup()
-
-      vim.keymap.set('n', '<leader>a', function()
-        harpoon:list():add()
-      end)
-      vim.keymap.set('n', '<C-e>', function()
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-      end)
-    end,
-  },
- 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   -- Better annotations
-  { 
-      "danymat/neogen", 
-      config = true,
+  {
+    'danymat/neogen',
+    config = true,
   },
 
   { -- Collection of various small independent plugins/modules
@@ -942,18 +950,18 @@ require('lazy').setup({
       --
       -- NOTE: uncomment this if you want a statusline
       --
-      local statusline = require 'mini.statusline'
+      -- local statusline = require 'mini.statusline'
       -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      -- statusline.setup { use_icons = vim.g.have_nerd_font }
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
       -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-
+      -- statusline.section_location = function()
+      --   return '%2l:%-2v'
+      -- end
+      --
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
@@ -974,7 +982,7 @@ require('lazy').setup({
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
-      indent = { enable = true, disable = { 'ruby' } },
+      indent = { enable = false, disable = { 'ruby' } },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
@@ -1031,21 +1039,3 @@ require('lazy').setup({
     },
   },
 })
-
--- Set default indentation settings
-vim.opt.expandtab = true -- Use spaces instead of tabs
-vim.opt.shiftwidth = 4 -- Size of an indent
-vim.opt.tabstop = 4 -- Number of spaces that a <Tab> in the file counts for
-
--- JS/TS use 2 spaces
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-  callback = function()
-    vim.bo.shiftwidth = 2
-    vim.bo.tabstop = 2
-    vim.bo.expandtab = true
-  end,
-})
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
