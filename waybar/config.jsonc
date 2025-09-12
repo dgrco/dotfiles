@@ -1,0 +1,51 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 38,
+    "spacing": 5,
+
+    "margin": "5 15 0 15",
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "memory", "cpu"],
+
+    "hyprland/workspaces": {
+        "format": "{id}", 
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "urgent": "!",
+            "default": "•"
+        },
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
+
+    "clock": {
+        "format": "<span>{:%A, %b %d  %I:%M %p}</span>",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 5,
+    },
+
+    "cpu": {
+        // Using a standard Font Awesome icon
+        "format": "CPU {usage: >2}%",
+        "tooltip": true,
+        "on-click": "foot -e btop"
+    },
+
+    "memory": {
+        // Using a different, standard Font Awesome icon
+        "format": "MEM {used:0.1f}/{total:0.1f} GB",
+        "on-click": "foot -e btop"
+    }
+}
+

@@ -57,6 +57,14 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'cc', 'c', 'cpp', 'h', 'hpp' },
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+  end,
+})
+
 -- Save undo history
 vim.o.undofile = true
 
@@ -665,15 +673,12 @@ require('lazy').setup({
         clangd = {},
         -- gopls = {},
         -- pyright = {},
-        rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = {},
-        --
 
         lua_ls = {
           -- cmd = { ... },
