@@ -250,16 +250,6 @@ require('lazy').setup({
       },
     },
   },
-  {
-    'itchyny/lightline.vim',
-    config = function ()
-      vim.g.lightline = {
-        colorscheme = "aquarium"
-      }
-
-      vim.cmd("highlight MatchParen guibg=#3B3B3B ctermbg=237 guifg=#DCDCDC ctermfg=254")
-    end
-  },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -899,14 +889,29 @@ require('lazy').setup({
   --   end,
   -- },
 
+  -- {
+  --   'FrenzyExists/aquarium-vim',
+  --   lazy = false,
+  --   name = 'aquarium',
+  --   priority = 1000,
+  --   config = function()
+  --     vim.g.aqua_bold = 1
+  --   end,
+  -- },
+
   {
-    'FrenzyExists/aquarium-vim',
+    'rose-pine/neovim',
     lazy = false,
-    name = 'aquarium',
     priority = 1000,
     config = function()
-      vim.g.aqua_bold = 1
-      vim.cmd.colorscheme 'aquarium'
+      require('rose-pine').setup({
+        styles = {
+          bold = true,
+          italic = false,
+          transparency = false,
+        },
+      })
+      vim.cmd.colorscheme 'rose-pine'
     end,
   },
 

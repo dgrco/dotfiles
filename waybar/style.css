@@ -1,76 +1,57 @@
-/* Color Palette */
-@define-color background rgba(40, 40, 40, 0.75);
-@define-color foreground #DCDCCC;
-@define-color accent #FFB86C; /* Golden-orange from the tree */
-@define-color urgent #E67E80;
-@define-color module-bg rgba(65, 65, 65, 0.6);
-
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "JetBrainsMono NFM", sans-serif;
-    font-weight: 900;
-    font-size: 14px;
-    min-height: 0;
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 16px;
+  min-height: 0;
 }
 
 window#waybar {
-    background: @background;
-    color: @foreground;
-    transition-property: background-color;
-    transition-duration: .5s;
-    border-radius: 12px;
+  background: rgba(22, 29, 38, 0.75); /* Dark blue-gray from the wallpaper */
+  color: #E6E6E6; /* Off-white for general text */
 }
 
-#workspaces,
-#clock,
-#cpu,
-#memory {
-    background-color: @module-bg;
-    padding: 2px 12px;
-    margin: 5px 0px;
-    border-radius: 10px;
+#waybar > * {
+  margin: 0 5px;
 }
 
+/* --- Workspaces --- */
 #workspaces {
-    margin-left: 5px;
-    padding: 2px 5px;
-}
-
-#cpu {
-    margin-right: 5px;
 }
 
 #workspaces button {
-    padding: 0 10px;
-    margin: 0 5px;
-    color: @foreground;
-    background-color: transparent;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+  padding: 0 8px;
+  color: #94A1B2; /* Muted blue-gray for inactive workspaces */
+  background: transparent;
+  transition: all 0.2s ease-in-out;
 }
 
 #workspaces button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #282828;
-}
-
-#workspaces button.active {
-    background-color: @accent;
-    color: #282828;
-    font-weight: bold;
+  background: rgba(70, 81, 100, 0.2);
+  color: #E6E6E6;
 }
 
 #workspaces button.urgent {
-    background-color: @urgent;
-    color: #282828;
+  color: #E55353;
+}
+
+/* --- Modules --- */
+#clock,
+#pulseaudio,
+#tray {
+  padding: 0 10px;
+  margin: 0 4px;
 }
 
 #clock {
-    font-weight: bold;
-    color: @foreground;
+  font-weight: bold;
+  color: #E6E6E6;
 }
 
-#tray {
-    margin-right: 12px;
+#pulseaudio {
+  padding: 0 12px; /* A bit more padding for icon-only modules */
+}
+
+#pulseaudio.muted {
+  color: #E55353;
 }

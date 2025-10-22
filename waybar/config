@@ -1,19 +1,55 @@
 {
   "layer": "top",
   "position": "top",
-  "modules-left": ["sway/workspaces"],
-  "modules-right": ["tray", "clock"],
+  "height": 32,
+  "spacing": 4,
 
-  "tray": {
-      "icon-size": 16,
-      "spacing": 8,
-      "tooltip": true,
-      "on-update": "echo tray updated"
+  "modules-left": ["hyprland/workspaces"], // or "sway/workspaces"
+  "modules-center": ["clock"],
+  "modules-right": ["tray", "pulseaudio"],
+
+  // --- Workspaces Configuration ---
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "active": "",   // The solid square for the active workspace
+      "urgent": ""
+    },
+    "persistent-workspaces": {
+      "*": 5 // Shows workspaces 1 through 5. Change 5 to 7 to show 7, etc.
+    }
   },
 
+  // --- Clock & Date Configuration ---
   "clock": {
-    "format": "{:%B %d  %I:%M %p}",
-    "tooltip-format": "{:%A, %B %d, %Y}"
+    // Format: Full Day Name | 12-hour time AM/PM
+    "format": "{:%A %I:%M %p}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  // --- Right Side Modules (Icon-Only) ---
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10
+  },
+
+  "pulseaudio": {
+    "format": "{icon}", // <-- Only shows the icon
+    "format-muted": "",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
+    "tooltip-format": "Volume: {volume}%", // <-- Shows volume on hover
+    "on-click": "pavucontrol"
   }
 }
-
