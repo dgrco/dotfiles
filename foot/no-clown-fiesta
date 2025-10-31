@@ -1,0 +1,30 @@
+[colors]
+foreground = E1E1E1
+background = 151515
+
+selection-foreground = E1E1E1
+selection-background = 373737
+
+# Normal colors (regular0 - regular7)
+regular0 = 151515       # bg
+regular1 = B46958       # red
+regular2 = 90A959       # green
+regular3 = F4BF75       # yellow
+regular4 = BAD7FF       # blue
+regular5 = AA749F       # purple
+regular6 = 88AFA2       # cyan
+regular7 = E1E1E1       # fg
+
+# Bright colors (bright0 - bright7)
+bright0  = 727272       # medium_gray
+bright1  = B46958       # red
+bright2  = 90A959       # green
+bright3  = F4BF75       # yellow
+bright4  = BAD7FF       # blue
+bright5  = AA749F       # purple
+bright6  = 88AFA2       # cyan
+bright7  = AFAFAF       # light_gray
+
+# Extended colors (16 and 17)
+16       = FFA557       # orange
+17       = B46958       # red
