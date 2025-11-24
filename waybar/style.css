@@ -1,27 +1,22 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "JetBrainsMono Nerd Font", monospace;
-  font-size: 16px;
+  font-family: "Hack Nerd Font Mono", monospace;
+  font-size: 17px;
   min-height: 0;
 }
 
 window#waybar {
-  background: rgba(22, 29, 38, 0.75); /* Dark blue-gray from the wallpaper */
-  color: #E6E6E6; /* Off-white for general text */
-}
-
-#waybar > * {
-  margin: 0 5px;
-}
-
-/* --- Workspaces --- */
-#workspaces {
+  background: rgba(22, 29, 38, 0.75);
+  /* Dark blue-gray from the wallpaper */
+  color: #E6E6E6;
+  /* Off-white for general text */
 }
 
 #workspaces button {
-  padding: 0 8px;
-  color: #94A1B2; /* Muted blue-gray for inactive workspaces */
+  padding: 0 10px;
+  color: #94A1B2;
+  /* Muted blue-gray for inactive workspaces */
   background: transparent;
   transition: all 0.2s ease-in-out;
 }
@@ -49,7 +44,8 @@ window#waybar {
 }
 
 #pulseaudio {
-  padding: 0 12px; /* A bit more padding for icon-only modules */
+  padding: 0 12px;
+  font-size: 24px;
 }
 
 #pulseaudio.muted {

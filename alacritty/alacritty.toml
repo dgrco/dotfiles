@@ -2,25 +2,25 @@
 size = 15 # Adjust this to your preferred font size
 
 [font.normal]
-family = "RobotoMono Nerd Font Mono"
+family = "Hack Nerd Font Mono"
 style = "Regular"
 
 [font.bold]
-family = "RobotoMono Nerd Font Mono"
+family = "Hack Nerd Font Mono"
 style = "Bold"
 
 [font.italic]
-family = "RobotoMono Nerd Font Mono"
+family = "Hack Nerd Font Mono"
 style = "Italic"
 
 [font.bold_italic]
-family = "RobotoMono Nerd Font Mono"
+family = "Hack Nerd Font Mono"
 style = "Bold Italic"
 
 [general]
 import = [
-    "~/.config/alacritty/themes/gruvbox_material_medium_dark.toml"
+    "~/.config/alacritty/themes/kanagawa_dragon.toml"
 ]
 
 [window]
-padding = { x = 4, y = 4 }
+padding = { x = 5, y = 5 }

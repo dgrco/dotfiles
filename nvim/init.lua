@@ -4,6 +4,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Cursor
+vim.opt.guicursor = ''
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
@@ -16,13 +19,13 @@ vim.g.have_nerd_font = true
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-vim.o.relativenumber = true
+vim.o.relativenumber = false
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
-vim.o.showmode = false
+vim.o.showmode = true
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -803,11 +806,25 @@ require('lazy').setup({
   },
 
   {
-    'aktersnurra/no-clown-fiesta.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    'rebelot/kanagawa.nvim',
+    lazy = false,
+    priority = 1000,
+    -- you can set set configuration options here
     config = function()
-      require('no-clown-fiesta').setup {}
-      vim.cmd.colorscheme 'no-clown-fiesta'
+      require('kanagawa').setup {
+        keywordStyle = { italic = false },
+        undercurl = false,
+        colors = {
+          theme = {
+            all = {
+              ui = {
+                bg_gutter = 'none', -- This removes the background from the line number column
+              },
+            },
+          },
+        },
+      }
+      require('kanagawa').load 'dragon'
     end,
   },
 
