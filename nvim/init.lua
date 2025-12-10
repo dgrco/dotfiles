@@ -1,4 +1,4 @@
--- Set <space> as the leader key
+-- Set <space> as the leader keyinit
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
@@ -19,7 +19,7 @@ vim.g.have_nerd_font = true
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-vim.o.relativenumber = false
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -806,25 +806,61 @@ require('lazy').setup({
   },
 
   {
-    'rebelot/kanagawa.nvim',
+    'rose-pine/neovim',
     lazy = false,
     priority = 1000,
     -- you can set set configuration options here
     config = function()
-      require('kanagawa').setup {
-        keywordStyle = { italic = false },
-        undercurl = false,
-        colors = {
-          theme = {
-            all = {
-              ui = {
-                bg_gutter = 'none', -- This removes the background from the line number column
-              },
-            },
+      require('rose-pine').setup {
+        styles = {
+          italic = false,
+        },
+        highlight_groups = {
+          Normal = { bg = '#000000' },
+          NormalNC = { bg = '#000000' }, -- For non-current windows
+        },
+      }
+      vim.cmd.colorscheme 'rose-pine'
+    end,
+  },
+
+  -- {
+  --   'rebelot/kanagawa.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   -- you can set set configuration options here
+  --   config = function()
+  --     require('kanagawa').setup {
+  --       keywordStyle = { italic = false },
+  --       undercurl = false,
+  --       colors = {
+  --         theme = {
+  --           all = {
+  --             ui = {
+  --               bg_gutter = 'none', -- This removes the background from the line number column
+  --             },
+  --           },
+  --         },
+  --       },
+  --     }
+  --     require('kanagawa').load 'dragon'
+  --   end,
+  -- },
+
+  -- Zen Mode
+  {
+    'folke/zen-mode.nvim',
+    config = function()
+      require('zen-mode').setup {
+        window = {
+          width = 90,
+          options = {
+            number = true,
+            relativenumber = true,
           },
         },
       }
-      require('kanagawa').load 'dragon'
+      vim.keymap.set('n', '<leader>z', '<cmd>ZenMode<CR>')
     end,
   },
 
