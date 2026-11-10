@@ -1,0 +1,28 @@
+[colors]
+alpha=1.0 
+
+foreground=f8f9e8
+background=232a2e
+
+regular0=232a2e            # black
+regular1=f57f82            # red
+regular2=cbe3b3            # green
+regular3=f5d098            # yellow
+regular4=b2caed            # blue
+regular5=f3c0e5            # magenta
+regular6=b3e3ca            # cyan
+regular7=f8f9e8            # white
+
+bright0=2b3337             # bright black
+bright1=f57f82            # bright red
+bright2=cbe3b3            # bright green
+bright3=f5d098            # bright yellow
+bright4=b2caed            # bright blue
+bright5=f3c0e5            # bright magenta
+bright6=b3e3ca            # bright cyan
+bright7=96b4aa            # bright white
+
+selection-foreground=f8f9e8
+selection-background=374145
+
+cursor=171c1f b3e6db       
