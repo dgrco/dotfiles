@@ -1,0 +1,21 @@
+font-family = FiraCode Nerd Font
+font-style = Retina
+font-size = 13
+font-feature = -calt, -liga, -dlig
+
+theme = slabaster-naysayer
+
+window-padding-x = 10
+window-padding-y = 10
+
+cursor-style = block
+cursor-style-blink = true
+mouse-hide-while-typing = false
+
+confirm-close-surface = false
+
+# new windows/tabs/splits open in the default dir, not the current one
+window-inherit-working-directory = false
+
+# stop shell integration from swapping the cursor to a bar in insert mode
+shell-integration-features = no-cursor

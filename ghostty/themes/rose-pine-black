@@ -1,0 +1,26 @@
+# Rosé Pine Moon (black background)
+# ported from ~/.config/foot/themes/rose-pine-black
+
+background = #040404
+foreground = #e0def4
+
+cursor-color = #c0caf5
+cursor-text = #040404
+
+palette = 0=#393552
+palette = 1=#eb6f92
+palette = 2=#9ccfd8
+palette = 3=#f6c177
+palette = 4=#3e8fb0
+palette = 5=#c4a7e7
+palette = 6=#ea9a97
+palette = 7=#e0def4
+
+palette = 8=#5c5776
+palette = 9=#ff98ba
+palette = 10=#c5f9ff
+palette = 11=#ffeb9e
+palette = 12=#6ab7d9
+palette = 13=#eed0ff
+palette = 14=#ffc3bf
+palette = 15=#fefcff
