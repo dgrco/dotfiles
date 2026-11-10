@@ -1,0 +1,56 @@
+# ~/.config/mako/config
+
+sort=-time
+layer=overlay
+background-color=#1e1e2e
+width=360
+height=110
+border-size=2
+border-color=#89b4fa
+border-radius=10
+icons=1
+max-icon-size=48
+icon-path=/usr/share/icons/Papirus-Dark
+default-timeout=5000
+ignore-timeout=0
+font=JetBrainsMono Nerd Font 11
+text-color=#cdd6f4
+margin=10
+padding=14
+anchor=top-right
+group-by=app-name,summary
+max-visible=5
+on-button-left=dismiss
+on-button-right=invoke-default-action
+on-button-middle=dismiss-all
+on-touch=dismiss
+
+
+# ── Urgency overrides ──────────────────────────────────────
+
+[urgency=low]
+border-color=#6c7086
+default-timeout=3000
+
+[urgency=normal]
+border-color=#89b4fa
+
+[urgency=high]
+border-color=#f38ba8
+text-color=#f38ba8
+default-timeout=0
+
+
+# ── Per-app rules ──────────────────────────────────────────
+
+[app-name=Spotify]
+border-color=#a6e3a1
+default-timeout=3000
+group-by=app-name
+
+[app-name=discord]
+border-color=#89b4fa
+group-by=app-name
+
+[app-name=firefox]
+border-color=#fab387
