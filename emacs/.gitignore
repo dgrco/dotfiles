@@ -1,0 +1,5 @@
+# Emacs writes packages, caches and history into its config directory.
+*
+!.gitignore
+!early-init.el
+!init.el
