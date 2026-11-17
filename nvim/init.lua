@@ -29,6 +29,49 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
 
+-- INDENT: per-filetype widths, matching each language's formatter default
+-- guess-indent and .editorconfig still override these for existing files
+local indent_by_filetype = {
+  c = 4,
+  cpp = 4,
+  cs = 4,
+  rust = 4,
+  python = 4,
+  sql = 4,
+  java = 4,
+  go = { width = 4, tabs = true },
+  javascript = 2,
+  javascriptreact = 2,
+  typescript = 2,
+  typescriptreact = 2,
+  html = 2,
+  css = 2,
+  scss = 2,
+  lua = 2,
+  json = 2,
+  jsonc = 2,
+  yaml = 2,
+  toml = 2,
+  xml = 2,
+  markdown = 2,
+  sh = 2,
+  bash = 2,
+  zsh = 2,
+}
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = vim.tbl_keys(indent_by_filetype),
+  desc = 'Set per-filetype indentation',
+  callback = function(args)
+    local indent = indent_by_filetype[args.match]
+    if type(indent) == 'number' then indent = { width = indent } end
+    vim.bo[args.buf].shiftwidth = indent.width
+    vim.bo[args.buf].tabstop = indent.width
+    vim.bo[args.buf].softtabstop = indent.width
+    vim.bo[args.buf].expandtab = not indent.tabs
+  end,
+})
+
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set({ 'n', 'i', 'v' }, '<F1>', '<Nop>', { desc = 'Disable F1 help' })
 -- avoids wiping the line when reaching for <C-y> to accept a completion
