@@ -71,7 +71,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "slabaster.nvim": {
-      "rev": "a5072ff740d3abd3e78fbbdb73a95a4976c5299f",
+      "rev": "a8d17f9cfdde67c4467eee9ae9731dfa2704496d",
       "src": "https://github.com/dgrco/slabaster.nvim"
     },
     "todo-comments.nvim": {

@@ -101,7 +101,7 @@ vim.pack.add {
   { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' },
 }
 
-vim.cmd.colorscheme 'slabaster-naysayer'
+vim.cmd.colorscheme 'slabaster-hearth'
 -- stops completed snippets from leaving their placeholder highlighted
 vim.api.nvim_set_hl(0, 'SnippetTabstop', {})
 
