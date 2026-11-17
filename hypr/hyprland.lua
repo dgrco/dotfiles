@@ -32,7 +32,7 @@ hl.monitor({
 local terminal    = "ghostty"
 local fileManager = "nautilus"
 local menu        = "fuzzel"
-local browser     = "brave-origin"
+local browser     = "firefox"
 local pdfViewer   = "papers"
 
 
