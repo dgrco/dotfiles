@@ -419,7 +419,7 @@ require('blink.cmp').setup {
   completion = {
     documentation = { auto_show = false },
     list = { selection = { preselect = true } },
-    menu = { auto_show = false, max_height = 10, draw = { columns = { { 'label' }, { 'kind' } } } },
+    menu = { auto_show = true, max_height = 10, draw = { columns = { { 'label' }, { 'kind' } } } },
   },
   sources = { default = { 'lsp', 'path' } },
   fuzzy = { implementation = 'prefer_rust_with_warning' },
