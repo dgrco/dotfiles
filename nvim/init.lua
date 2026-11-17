@@ -327,6 +327,42 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+local function uses_native_typescript(root)
+  if vim.fn.executable(vim.fs.joinpath(root, 'node_modules/.bin/tsgo')) == 1 then
+    return true
+  end
+  local manifest = vim.fs.joinpath(root, 'node_modules/typescript/package.json')
+  if vim.fn.filereadable(manifest) == 0 then
+    return false
+  end
+  local version = vim.version.parse(vim.json.decode(table.concat(vim.fn.readfile(manifest), '\n')).version)
+  return version ~= nil and version.major >= 7
+end
+
+local stock_typescript = {}
+for _, name in ipairs { 'ts_ls', 'tsc' } do
+  stock_typescript[name] = vim.lsp.config[name]
+  assert(type(stock_typescript[name].root_dir) == 'function', 'nvim-lspconfig changed ' .. name .. '.root_dir, update typescript_config')
+end
+
+-- wraps lspconfig's own config so upstream fixes still apply. the root comes from ts_ls because
+-- its root_dir has no side effects, while tsc's spawns binaries and warns when none is TS 7+.
+-- cmd must come from the same load as root_dir: tsc caches the binary root_dir finds for cmd,
+-- and nvim reloads lsp/tsc.lua on every resolve, which would give cmd an empty cache
+local function typescript_config(server, want_native)
+  local stock = stock_typescript[server]
+  return {
+    cmd = stock.cmd,
+    root_dir = function(bufnr, on_dir)
+      stock_typescript.ts_ls.root_dir(bufnr, function(root)
+        if uses_native_typescript(root) == want_native then
+          stock.root_dir(bufnr, on_dir)
+        end
+      end)
+    end,
+  }
+end
+
 ---@type table<string, vim.lsp.Config>
 local servers = {
   clangd = {},
@@ -336,7 +372,7 @@ local servers = {
   tailwindcss = {},
   docker_compose_language_service = {},
   dockerls = {},
-  ts_ls = {},
+  ts_ls = typescript_config('ts_ls', false),
   roslyn_ls = {},
 }
 require('mason').setup {}
@@ -347,6 +383,10 @@ for name, server in pairs(servers) do
   vim.lsp.config(name, server)
   vim.lsp.enable(name)
 end
+
+-- not in mason: the TS 7 binary comes from each project's node_modules
+vim.lsp.config('tsc', typescript_config('tsc', true))
+vim.lsp.enable 'tsc'
 
 local prettier = { 'prettierd', 'prettier', stop_after_first = true }
 require('conform').setup {
