@@ -5,8 +5,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
-vim.o.guicursor = ''
-vim.o.winborder = 'rounded'
+--vim.o.guicursor = ''
+--vim.o.winborder = 'rounded'
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
