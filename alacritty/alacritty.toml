@@ -12,9 +12,9 @@ history = 10000
 multiplier = 3
 
 [font]
-normal = { family = "FiraCode Nerd Font", style = "Retina" }
-bold   = { family = "FiraCode Nerd Font", style = "Bold" }
-italic = { family = "FiraCode Nerd Font", style = "Italic" }
+normal = { family = "CaskaydiaMono NFM", style = "Regular" }
+bold   = { family = "CaskaydiaMono NFM", style = "Bold" }
+italic = { family = "CaskaydiaMono NFM", style = "Italic" }
 size = 13
 
 [font.offset]
