@@ -29,7 +29,7 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
-local terminal    = "ghostty"
+local terminal    = "alacritty"
 local fileManager = "nautilus"
 local menu        = "fuzzel"
 local browser     = "firefox"
