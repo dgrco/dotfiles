@@ -28,6 +28,7 @@ vim.o.confirm = true
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
+vim.o.wrap = false
 
 -- INDENT: per-filetype widths, matching each language's formatter default
 -- guess-indent and .editorconfig still override these for existing files
