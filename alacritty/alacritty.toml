@@ -1,5 +1,5 @@
 general.import = [
-    "~/.config/alacritty/themes/slabaster-focus.toml"
+    "~/.config/alacritty/themes/slabaster-hearth.toml"
 ]
 
 [window]
